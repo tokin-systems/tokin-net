@@ -18,6 +18,7 @@ const ports = {
 
 const db = {
   state: {
+    // Rediculously flat and fast K/V store. Constructed from relationships in graphDB
     servers: {
       // Active servers and trackers on the network
       lobbies: [], // Responsible for matching players with games and rankings
@@ -47,7 +48,7 @@ const db = {
     },
     unstructured: [] // blobs of data
   },
-  graph: {
+  graphdb: {
     // Stores relationships
     nodes: {}, // index of pointers (see p2p) for people, places, or things
     edges: {} // nature, quality, frequency, node connections
@@ -55,10 +56,11 @@ const db = {
   blockchain: {
     // Stores immutable events, i.e. transactions, new accounts, new tokens
     mainnet: {
+      // Live production network nodes
       transactions: [],
       accounts: [],
       tokens: []
-    }, // Live production network nodes
+    },
     testnet: [] // Sandboxed development network nodes
   }
 }

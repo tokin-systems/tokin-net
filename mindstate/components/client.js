@@ -14,7 +14,12 @@ const ports = {
 }
 
 /* 
-    ALL messages follow the following structure 
+
+  SUMMARY:
+
+  Clients makes specific requests to Mind. Follows explicitly predefined API and protocols.
+
+    ALL messages follow this data structure 
     var content = [1, 2, 3]
     [
         {
@@ -27,6 +32,23 @@ const ports = {
             type: 'process' // running the function 'add' in a process
         }, ...content
     ]
+
+    The following methods are available for a client to call. Matches API in Mind.js
+      addAccount: () => {}, // creates transaction for meta, team, and player accounts. Updates state and graphdb
+      updateAccount: () => {}, // adds to transaction. updates state and graphdb
+      addToken: () => {}, // Tok (coin), Kin (share), or Oki (key)
+      splitToken: () => {}, // creates 1000 Tiks from 1 Tok
+      destroyToken: () => {}, // creates 1000 Tiks from 1 Tok
+      // addTransaction: () => {}, // the individual methods are transactions, durrr.
+      challengeTransaction: () => {}, // method to call out fraudulent transactions or other cheats
+      addContent: () => {}, // creates entries into p2p storage, updates state, and adds relations to graphdb
+      updateContent: () => {}, // updates state and relations to graphdb
+      addHustle: () => {}, // creates transaction for hustle, updates state and relations on graphdb
+      updateHustle: () => {}, // Adds to hustle transaction for player joins, player accomplishments, and other updates
+      query: () => {}, // Find ANY specific answer in the system. i.e. players, teams, content, etc
+      search: () => {}, // Find ALL matches
+      verify: () => {} // Validate proofs and callbacks for expected results
+
 */
 
 var content = [1, 2, 3]

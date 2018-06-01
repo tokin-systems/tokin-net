@@ -6,6 +6,32 @@
 
 // Client sends a request including a command, data sources, context, and identification to mind.js
 
+/*
+Follows API requirements and protocols from main.js
+
+  hustleRules: {
+    // Game modifier and multiplier protocols
+  },
+  blockchain: {
+    // Events and transaction protocols
+    atomicSwap: () => {},
+    qBitcoin: () => {},
+    smartContract: () => {}
+  },
+  consensus: {
+    // Network agreement protocols
+    gossip: () => {},
+    paxos: () => {}
+  },
+  graphdb: {
+    // Relationship protocols.. i.e. what's a node and edge
+  },
+  p2p: {
+    // Torrent-esq protocol for p2p file uploads and transferring
+  }
+
+*/
+
 const dgram = require('dgram')
 const server = dgram.createSocket('udp4')
 

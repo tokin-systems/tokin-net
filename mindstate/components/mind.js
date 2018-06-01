@@ -4,6 +4,7 @@
 const crypto = require('crypto')
 const dgram = require('dgram')
 const server = dgram.createSocket('udp4')
+
 const clients = {}
 const ports = {
   memory: 41236,
@@ -12,23 +13,50 @@ const ports = {
   mind: 41233
 }
 const algos = {
-  sort: {},
-  search: {},
-  statistics: {},
-  machineLearning: {}
+  sort: {
+    // Strategies for organizing lists
+    bubble: () => {},
+    bucket: () => {}
+  },
+  query: {
+    // Strategies for finding and returning specific data
+  },
+  search: {
+    // Various strategies to return lists of relevant data to a request
+    depth: () => {},
+    breadth: () => {}
+  },
+  statistics: {
+    // Standard deviations
+  },
+  machineLearning: {
+    // Various advanced statistics and strategies towards proper prediction
+  }
 }
 const protocols = {
-  hustleRules: {}, // Game modifiers and multipliers
+  hustleRules: {
+    // Game modifier and multiplier protocols
+  },
   blockchain: {
+    // Events and transaction protocols
     atomicSwap: () => {},
     qBitcoin: () => {},
     smartContract: () => {}
   },
   consensus: {
-    gossip: () => {}
+    // Network agreement protocols
+    gossip: () => {},
+    paxos: () => {}
   },
-  graphdb: {},
-  p2p: {}
+  graphdb: {
+    // Relationship protocols.. i.e. what's a node and edge
+  },
+  p2p: {
+    // Torrent-esq protocol for p2p file uploads and transferring
+  },
+  authentication: {
+    // Valid authentication protocols
+  }
 }
 const api = {
   addAccount: () => {}, // creates transaction for meta, team, and player accounts. Updates state and graphdb
