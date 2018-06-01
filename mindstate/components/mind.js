@@ -32,7 +32,7 @@ const protocols = {
 }
 const api = {
   addAccount: () => {}, // creates transaction for meta, team, and player accounts. Updates state and graphdb
-  updateAccount: () => {}, // Updates state and graphdb
+  updateAccount: () => {}, // adds to transaction. updates state and graphdb
   addToken: () => {}, // Tok (coin), Kin (share), or Oki (key)
   splitToken: () => {}, // creates 1000 Tiks from 1 Tok
   destroyToken: () => {}, // creates 1000 Tiks from 1 Tok
