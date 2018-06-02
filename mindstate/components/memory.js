@@ -50,8 +50,9 @@ const db = {
   },
   graphdb: {
     // Stores relationships
-    nodes: {}, // index of pointers (see p2p) for people, places, or things
-    edges: {} // nature, quality, frequency, node connections
+    nodes: [], // index of pointers (see p2p) for people, places, or things
+    edges: [], // nature, quality, frequency, node connections
+    vectors: []
   },
   blockchain: {
     // Stores immutable events, i.e. transactions, new accounts, new tokens

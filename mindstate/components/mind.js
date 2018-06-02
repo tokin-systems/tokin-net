@@ -53,6 +53,14 @@ const protocols = {
   },
   p2p: {
     // Torrent-esq protocol for p2p file uploads and transferring
+    structured: {
+      public: () => {},
+      private: () => {}
+    },
+    unstructured: {
+      public: () => {},
+      private: () => {}
+    }
   },
   authentication: {
     // Valid authentication protocols
@@ -118,3 +126,14 @@ server.on('listening', () => {
 
 server.bind(ports.mind)
 // server listening 0.0.0.0:41234
+
+/*  
+  Fun things to integrate!
+
+  var Combinatorics = require('js-combinatorics');
+  All the combinations and permutations
+
+  https://wiki2.org/en/Pseudovector
+  Where the real world is modelled
+
+*/
