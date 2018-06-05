@@ -4,35 +4,53 @@
 
 // Client sends a request including a command, data sources, context, and identification to mind.js
 
-const dgram = require('dgram')
-const server = dgram.createSocket('udp4')
-const crypto = require('crypto')
+const dgram = require('dgram'),
+  server = dgram.createSocket('udp4'),
+  crypto = require('crypto'),
+  // Memory requirements
+  levelgraph = require('levelgraph'), // Graph DB
+  jsonld = require('levelgraph-jsonld'),
+  levelgraphN3 = require('levelgraph-n3'),
+  memdown = require('memdown'),
+  levelup = require('levelup'),
+  levelDB = require('level-browserify'), // Blockchain DB
+  webtorrent = require('webtorrent'), // P2P
+  loki = require('lokijs'), // K/V DB
+  // Memory init
+  graph = levelgraph(levelDB('test-graph')),
+  jsonLdDb = jsonld(graph),
+  n3db = levelgraphN3(graph),
+  blockchain = levelDB('test-blockchain'),
+  torrent = new webtorrent(),
+  kv = require('lokijs'),
+  encode = require('encoding-down'),
+  memdb = levelup(encode(memdown()))
 
-// Memory requirements
-const levelgraph = require('levelgraph') // Graph DB
-const levelDB = require('level-browserify') // Blockchain DB
-const webtorrent = require('webtorrent') // P2P
-const loki = require('lokijs') // K/V DB
+// TESTS
 
-// Memory init
-const graph = levelgraph(levelDB('test-graph'))
-const blockchain = levelDB('test-blockchain')
-const torrent = new webtorrent()
-const kv = require('lokijs')
+memdb.put('hey', 'you', err => {
+  if (err) throw err
 
-console.log(
-  'blockchain\n',
-  Object.keys(blockchain),
-  '\n\n',
-  'graph\n',
-  Object.keys(graph),
-  '\n\n',
-  'torrent\n',
-  Object.keys(torrent),
-  '\n\n',
-  'k/v\n',
-  Object.keys(kv)
-)
+  memdb.get('hey', { asBuffer: false }, (err, value) => {
+    if (err) throw err
+    console.log(value) // 'you'
+  })
+})
+// console.log(
+//   'blockchain\n',
+//   Object.keys(blockchain),
+//   '\n\n',
+//   'graph\n',
+//   Object.keys(graph),
+//   '\n\n',
+//   'torrent\n',
+//   Object.keys(torrent),
+//   '\n\n',
+//   'k/v\n',
+//   Object.keys(kv)
+// )
+
+// SERVER
 
 const clients = {}
 const outputLog = []

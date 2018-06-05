@@ -16,6 +16,8 @@
 * Memory - Distributed systems
   * Blockchain - transactions and events
   * GraphDB - relationships
+    * Subject/predicate/object notation
+    * JSON-LD and NTriples (N3/Turtle/RDF) data
   * p2p - content and data blobs
   * K/V - game and application state
 * Output - validates and verifies results, sends to client and memory
@@ -32,8 +34,38 @@ Client wants a response to something
 4.  _Client_ is satisfied.
 5.  _Memory_ adds or updates appropriately to the data stores.
 
+## Documentation
+
+### Graph DB
+
+```
+/*
+Get and Put
+
+Inserting a triple in the database is extremely easy:
+
+  var triple = { subject: "a", predicate: "b", object: "c" };
+  db.put(triple, function(err) {
+  // do something after the triple is inserted
+});
+
+Retrieving it through pattern-matching is extremely easy:
+
+  db.get({ subject: "a" }, function(err, list) {
+    console.log(list);
+  });
+
+It even supports a Stream interface:
+
+  var stream = db.getStream({ predicate: "b" });
+  stream.on("data", function(data) {
+    console.log(data);
+  });
+*/
+`
 ## To Discover
 
 * Pseudovectors
 * Pseudoscalars
 * Pseudotensors
+```
