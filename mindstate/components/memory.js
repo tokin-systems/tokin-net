@@ -7,6 +7,33 @@
 const dgram = require('dgram')
 const server = dgram.createSocket('udp4')
 const crypto = require('crypto')
+
+// Memory requirements
+const levelgraph = require('levelgraph') // Graph DB
+const levelDB = require('level-browserify') // Blockchain DB
+const webtorrent = require('webtorrent') // P2P
+const loki = require('lokijs') // K/V DB
+
+// Memory init
+const graph = levelgraph(levelDB('test-graph'))
+const blockchain = levelDB('test-blockchain')
+const torrent = new webtorrent()
+const kv = require('lokijs')
+
+console.log(
+  'blockchain\n',
+  Object.keys(blockchain),
+  '\n\n',
+  'graph\n',
+  Object.keys(graph),
+  '\n\n',
+  'torrent\n',
+  Object.keys(torrent),
+  '\n\n',
+  'k/v\n',
+  Object.keys(kv)
+)
+
 const clients = {}
 const outputLog = []
 const ports = {
