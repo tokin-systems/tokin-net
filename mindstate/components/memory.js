@@ -28,6 +28,7 @@ const dgram = require('dgram'),
 
 // TESTS
 
+//// memdown
 memdb.put('hey', 'you', err => {
   if (err) throw err
 
@@ -36,6 +37,30 @@ memdb.put('hey', 'you', err => {
     console.log(value) // 'you'
   })
 })
+
+//// levelup / json-ld
+let tripleLD = {
+  subject: 'test',
+  predicate: 'graph',
+  object: 'json-ld'
+}
+jsonLdDb.put(tripleLD, function(err) {
+  console.log(tripleLD)
+  // do something after the triple is inserted
+})
+
+//// levelup / n3
+var tripleN3 = { subject: 'test', predicate: 'graph', object: 'turtle' }
+jsonLdDb.put(tripleN3, function(err) {
+  console.log(tripleN3)
+  // do something after the triple is inserted
+})
+
+// entire db check
+graph.get({ subject: 'test' }, function(err, list) {
+  console.log('total db', list)
+})
+
 // console.log(
 //   'blockchain\n',
 //   Object.keys(blockchain),
@@ -125,6 +150,16 @@ server.on('message', (rawmsg, rinfo) => {
       rinfo.port
     }`
   )
+  const triple = {
+    subject: 'test',
+    predicate: 'memory graphdb',
+    object: JSON.stringify(msg)
+  }
+  jsonLdDb.put(triple, function(err) {
+    console.log(triple)
+    // do something after the triple is inserted
+  })
+
   const decipher = crypto.createDecipher('aes192', 'password')
   let decrypted = decipher.update(msg[1], 'hex', 'utf8')
   decrypted += decipher.final('utf8')
